@@ -12,7 +12,7 @@
         android:layout_above="@id/linearLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:text="Retrofit test from Wikipedia"
+        android:text="Retrofit test with Wikipedia"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline" />
 
     <LinearLayout

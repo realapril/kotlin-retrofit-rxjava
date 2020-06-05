@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.TextView
 import com.example.kotlinretrofittutorial.R
 import com.example.kotlinretrofittutorial.api.WikiApiService
+import com.example.kotlinretrofittutorial.models.Models
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -34,13 +35,32 @@ class MainActivity : AppCompatActivity() {
                         )
     }
 
+    private fun beginSearchDetailVer(srsearch: String) {
+        disposable =
+                wikiApiServe.hitCountWithResponseCode("query", "json", "search", srsearch)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                                { result ->
+                                    if(result.isSuccessful){
+                                        val res:Models.Result = result.body()?:Models.Result(Models.Query(Models.SearchInfo(-1)))
+                                        result.body()?.let {  showResult(res.query.searchinfo.totalhits) }
+                                        Log.i("TEST: ", "success "+result.code())
+                                    }else{
+                                        Log.i("TEST: ", "failed "+result.code())
+                                    }
+                                },
+                                { error -> showError(error.message) }
+                        )
+    }
+
     private  fun showResult(totalhits: Int){
         Log.d("Result hits: ", totalhits.toString())
         textViewResult?.setText(totalhits.toString())
     }
 
     private fun showError(message: String?){
-        Log.d("Error Msg:", message)
+        Log.e("Error Msg:", message)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +74,8 @@ class MainActivity : AppCompatActivity() {
         buttonSearch.setOnClickListener {
             var searchKey = editTextKeyword.text.toString()
 
-            beginSearch(searchKey)
+            //beginSearch(searchKey)
+            beginSearchDetailVer(searchKey)
         }
 
     }

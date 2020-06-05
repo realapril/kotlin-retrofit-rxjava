@@ -3,6 +3,8 @@ package com.example.kotlinretrofittutorial.api
 import com.example.kotlinretrofittutorial.models.Models
 import com.google.gson.GsonBuilder
 import io.reactivex.Observable
+import io.reactivex.Single
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -18,6 +20,13 @@ interface WikiApiService {
                       @Query("list") list: String,
                       @Query("srsearch") srsearch: String):
             Observable<Models.Result>
+
+    @GET("api.php")
+    fun hitCountWithResponseCode(@Query("action") action: String,
+                      @Query("format") format: String,
+                      @Query("list") list: String,
+                      @Query("srsearch") srsearch: String):
+            Single<Response<Models.Result>>
 
     //Gets result from https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=<SomeKeywords>
 
