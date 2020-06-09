@@ -59,13 +59,12 @@ class MainActivity : BasicActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var buttonSearch = findViewById<Button>(R.id.buttonSearch)
-        var editTextKeyword = findViewById<EditText>(R.id.editTextKeyword)
+        val buttonSearch = findViewById<Button>(R.id.buttonSearch)
+        val editTextKeyword = findViewById<EditText>(R.id.editTextKeyword)
         textViewResult = findViewById<TextView>(R.id.textViewRes)
 
         buttonSearch.setOnClickListener {
-            var searchKey = editTextKeyword.text.toString()
-
+            val searchKey = editTextKeyword.text.toString()
 
             beginSearchDetailVer(searchKey)
         }
