@@ -6,13 +6,11 @@ Example of retrofit2 and rxjava
 
 
 If you want to test the [first tutorial](https://realapril.tistory.com/39)    
-you should git reset --hard ef06568340d23da6d1c172c67309d93abff9bbdb   
-**AFTER** git clone this project
+download [v.1.0.1](https://github.com/realapril/kotlin-retrofit-rxjava/releases/tag/v.1.0.1)
 
 
 If you want to test the [second tutorial](https://realapril.tistory.com/42)  
-you should git reset --hard 0193410ad3dc893b5e186c6c8688289ea47c36d6   
-**AFTER** git clone this project
+download [v.1.0.2](https://github.com/realapril/kotlin-retrofit-rxjava/releases/tag/v.1.0.2)
 
 If you are reading the [third tutorial](https://realapril.tistory.com/44)   
 go ahead!    
