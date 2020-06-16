@@ -1,7 +1,7 @@
 package com.example.kotlinretrofittutorial.activities
 
 
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -9,11 +9,10 @@ import android.widget.EditText
 import android.widget.TextView
 import com.example.kotlinretrofittutorial.R
 import com.example.kotlinretrofittutorial.api.RetrofitClient
-import com.example.kotlinretrofittutorial.api.WikiApiService
 import com.example.kotlinretrofittutorial.models.Models
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.HttpException
 
 
@@ -67,6 +66,12 @@ class MainActivity : BasicActivity() {
             val searchKey = editTextKeyword.text.toString()
 
             beginSearchDetailVer(searchKey)
+        }
+
+
+        button_dynamic.setOnClickListener{
+            val intent = Intent(this@MainActivity, DynamicActivity::class.java)
+            startActivity(intent)
         }
 
     }

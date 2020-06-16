@@ -5,10 +5,15 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 object RetrofitClient{
 
-    private const val BASE_URL = "https://en.wikipedia.org/w/"
+    private var BASE_URL = "https://en.wikipedia.org/w/"
+
+    fun setFullURL(baseString: String){
+        BASE_URL = baseString
+    }
 
     private val okHttpClient = OkHttpClient.Builder()
             .addInterceptor { chain ->
@@ -22,6 +27,7 @@ object RetrofitClient{
                 chain.proceed(request)
             }.build()
 
+
     val Instance_Wiki: WikiAPI by lazy{
         var gson = GsonBuilder()
                 .setLenient()
@@ -33,5 +39,18 @@ object RetrofitClient{
                 .client(okHttpClient)
                 .build()
         retrofit.create(WikiAPI::class.java)
+    }
+
+
+    private lateinit var Instance_Dynamic : DynamicAPI
+    fun Instance_Dynamic() : DynamicAPI{
+        val retrofit = Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .client(okHttpClient)
+                .build()
+        Instance_Dynamic = retrofit.create(DynamicAPI::class.java)
+        return Instance_Dynamic
     }
 }
