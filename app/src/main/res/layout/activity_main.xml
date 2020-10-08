@@ -7,65 +7,153 @@
     tools:context=".activities.MainActivity">
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/linearLayout"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:text="Retrofit test with Wikipedia"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:text="Retrofit test with Dummy.restapiexample.com"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <TextView
+        android:id="@+id/txt_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1. search one employee"
+        android:layout_marginStart="15dp"
+        android:layout_below="@+id/title"/>
+    <EditText
+        android:id="@+id/editTextKeyword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:drawablePadding="5dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:inputType="number"
+        android:hint="id"
+        android:text="5"
+        android:layout_below="@+id/txt_search"
+        />
 
+    <Button
+        android:id="@+id/btn_getOne"
+        android:textAlignment="center"
+        android:layout_below="@id/editTextKeyword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="15dp"
+        android:text="search with id" />
+
+    <TextView
+        android:id="@+id/txt_getAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2. get all employees"
+        android:layout_marginStart="15dp"
+        android:layout_below="@+id/btn_getOne"/>
+    <Button
+        android:id="@+id/btn_getAll"
+        android:textAlignment="center"
+        android:layout_below="@id/txt_getAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="15dp"
+        android:text="get all" />
+
+    <TextView
+        android:id="@+id/txt_create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3. create new employee"
+        android:layout_marginStart="15dp"
+        android:layout_below="@+id/btn_getAll"/>
+
+    <LinearLayout
+        android:id="@+id/lnr_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_create"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name : "/>
         <EditText
-            android:id="@+id/editTextKeyword"
-            android:layout_width="match_parent"
+            android:id="@+id/edit_name"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:drawablePadding="5dp"
-            android:hint="KeyWord"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_below="@+id/txt_create"
             />
-
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lnr_salary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lnr_name"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="salary : "/>
+        <EditText
+            android:id="@+id/edit_salary"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_below="@+id/txt_create"
+            android:inputType="number"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lnr_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lnr_salary"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="age : "/>
+        <EditText
+            android:id="@+id/edit_age"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_below="@+id/txt_create"
+            android:inputType="number"
+            />
+    </LinearLayout>
+
+
     <Button
-        android:id="@+id/buttonSearch"
+        android:id="@+id/btn_create"
         android:textAlignment="center"
-        android:layout_below="@id/linearLayout"
+        android:layout_below="@id/lnr_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Search" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="15dp"
+        android:text="create" />
 
-    <TextView
-        android:id="@+id/textViewRes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonSearch"
-        android:layout_toLeftOf="@id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:lineSpacingExtra="7dp"
-        android:textAlignment="center"
 
-        />
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonSearch"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:lineSpacingExtra="7dp"
-        android:text="    Results found"
-        android:textAlignment="center"
-    />
 
     <Button
         android:id="@+id/button_dynamic"

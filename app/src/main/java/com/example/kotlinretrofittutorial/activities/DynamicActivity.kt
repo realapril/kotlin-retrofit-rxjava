@@ -15,7 +15,7 @@ import retrofit2.HttpException
 
 class DynamicActivity : BasicActivity() {
 
-    lateinit var builder: AlertDialog.Builder
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,13 +44,13 @@ class DynamicActivity : BasicActivity() {
 
     fun showMsg(msg: String) {
         //1
-        builder = AlertDialog.Builder(this)
+        var builder = AlertDialog.Builder(this)
         //2
         builder.setTitle("Result")
         builder.setMessage(msg)
                 .setPositiveButton("ok",
                         DialogInterface.OnClickListener { dialog, id ->
-                            dialog.cancel()
+
                         }).show()
     }
 }
