@@ -1,8 +1,8 @@
 package com.example.kotlinretrofittutorial.api
 
 import com.example.kotlinretrofittutorial.models.EmployeeReq
+import com.example.kotlinretrofittutorial.models.EmployeeResList
 import com.example.kotlinretrofittutorial.models.EmployeeRes
-import com.example.kotlinretrofittutorial.models.EmployeeRes2
 import io.reactivex.Maybe
 import retrofit2.Response
 import retrofit2.http.Body
@@ -12,9 +12,9 @@ import retrofit2.http.Path
 
 interface DummyAPI {
 
-    @GET("/api/v1/employee")
+    @GET("/api/v1/employees")
     fun getEmployees(
-    ): Maybe<Response<EmployeeRes>>
+    ): Maybe<Response<EmployeeResList>>
 
     @GET("/api/v1/employee/{id}")
     fun searchEmployee(
@@ -24,6 +24,6 @@ interface DummyAPI {
     @POST("/api/v1/create")
     fun createEmployee(
        @Body employeeReq: EmployeeReq
-    ): Maybe<Response<EmployeeRes2>>
+    ): Maybe<Response<EmployeeRes>>
 
 }

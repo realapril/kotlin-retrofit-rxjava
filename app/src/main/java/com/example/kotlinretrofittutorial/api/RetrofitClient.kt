@@ -36,16 +36,18 @@ object RetrofitClient{
         retrofit.create(DummyAPI::class.java)
     }
 
-    private lateinit var Instance_Dynamic : DynamicAPI
-    fun Instance_Dynamic() : DynamicAPI{
+
+    val Instance_Dynamic: DynamicAPI by lazy{
+        var gson = GsonBuilder()
+                .setLenient()
+                .create()
         val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(createClientAuth())
                 .build()
-        Instance_Dynamic = retrofit.create(DynamicAPI::class.java)
-        return Instance_Dynamic
+        retrofit.create(DynamicAPI::class.java)
     }
 
 

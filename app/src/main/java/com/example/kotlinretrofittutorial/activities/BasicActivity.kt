@@ -1,15 +1,19 @@
 package com.example.kotlinretrofittutorial.activities
 
 import android.support.v7.app.AppCompatActivity
-import io.reactivex.disposables.Disposable
+import io.reactivex.disposables.CompositeDisposable
 
 
 abstract class BasicActivity : AppCompatActivity() {
-    var disposable: Disposable? = null
 
+    protected val disposables by lazy {
+        CompositeDisposable()
+    }
 
-    override fun onPause() {
-        super.onPause()
-        if (disposable != null) disposable!!.dispose()
+    override fun onDestroy() {
+        super.onDestroy()
+        if (!disposables.isDisposed) {
+            disposables.dispose()
+        }
     }
 }
