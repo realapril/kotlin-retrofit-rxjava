@@ -81,12 +81,10 @@ class MainActivity : BasicActivity() {
                             showMsg("SUCCESS RESULT : \nData Size: ${Elist.size} \nSample Names:  ${Nlist}" )
 
                         },
-                        { error -> //showError(error.message)
-                            if (error is HttpException) {
-                                Log.i("TEST Error: ", "${error.code()} exception.response.code : ${error.response()?.code()}")
-                            }
-                            Log.i("TEST Error: ", "${error.message}")
-                            showMsg("Error RESULT : ${error.toString()}" )
+                        { error ->
+                            Log.i("TEST Error: ", "${(error as HttpException).code()}")
+                            Log.i("TEST Error: ", "$error")
+                            showMsg("Error RESULT : ${error.message}" )
                         }
                 ).apply { disposables.add(this) }
     }
@@ -107,10 +105,9 @@ class MainActivity : BasicActivity() {
                             }
                         },
                         { error -> //showError(error.message)
-                            if (error is HttpException) {
-                                Log.i("TEST Error: ", "${error.code()} exception.response.code : ${error.response()?.code()}")
-                            }
-                            showMsg("Error RESULT : ${error.toString()}" )
+                            Log.i("TEST Error: ", "${(error as HttpException).code()}")
+                            Log.i("TEST Error: ", "$error")
+                            showMsg("Error RESULT : ${error.message}" )
                         }
                 ).apply { disposables.add(this) }
     }
