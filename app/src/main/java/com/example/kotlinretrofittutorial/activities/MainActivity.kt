@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.example.kotlinretrofittutorial.R
+import com.example.kotlinretrofittutorial.api.DummyAPI_RB
 import com.example.kotlinretrofittutorial.api.RetrofitClient
 import com.example.kotlinretrofittutorial.models.*
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -15,6 +16,7 @@ import retrofit2.HttpException
 
 class MainActivity : BasicActivity() {
 
+    val BaseString = "http://dummy.restapiexample.com/"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -43,7 +45,7 @@ class MainActivity : BasicActivity() {
     }
 
     private fun searchOne(id: Int) {
-        RetrofitClient.Instance_Dummy.searchEmployee(id)
+        DummyAPI_RB(BaseString).buildUseCaseMaybe(id)
                 .subscribeOn(Schedulers.io())
                 .map { t -> if (t.isSuccessful) t else throw HttpException(t) }
                 .observeOn(AndroidSchedulers.mainThread())
@@ -52,7 +54,9 @@ class MainActivity : BasicActivity() {
                             Log.i("TEST: ", "success " + result.toString())
                             val res: EmployeeRes = result.body()!!
                             showMsg("SUCCESS RESULT : " + res.toString())
-                        },
+
+                        }
+                        ,
                         { error -> //showError(error.message)
 
                             Log.i("TEST Error: ", "${(error as HttpException).code()}")
@@ -66,7 +70,7 @@ class MainActivity : BasicActivity() {
     }
 
     private fun getAll() {
-        RetrofitClient.Instance_Dummy.getEmployees()
+        DummyAPI_RB(BaseString).buildUseCaseMaybe()
                 .subscribeOn(Schedulers.io())
                 .map { t -> if (t.isSuccessful) t else throw HttpException(t) }
                 .observeOn(AndroidSchedulers.mainThread())
@@ -90,7 +94,7 @@ class MainActivity : BasicActivity() {
     }
 
     private fun createNew(employeeData: EmployeeReq) {
-        RetrofitClient.Instance_Dummy.createEmployee(employeeData)
+        DummyAPI_RB(BaseString).buildUseCaseMaybe(employeeData)
                 .subscribeOn(Schedulers.io())
                 .map { t -> if (t.isSuccessful) t else throw HttpException(t) }
                 .observeOn(AndroidSchedulers.mainThread())
